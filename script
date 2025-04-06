@@ -1,4 +1,4 @@
-//event
+# event
 
 function navigateToEvent() {
     var select = document.getElementById("eventList");
@@ -16,7 +16,7 @@ function navigateToAll() {
     }
 }
 
-//logout
+#logout
 
 document.addEventListener('DOMContentLoaded',()=>{
     const userlogout = document.getElementById('userlogout');
