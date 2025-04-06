@@ -1,0 +1,27 @@
+create database campus_vibes;
+use campus_vibes;
+
+create table Clubs ( Club_ID int not null primary key, Name varchar(50) not null , Description varchar(100) not null , Club_Lead varchar(30));
+
+create table Users ( Name varchar(30) not null , Roll_Number varchar(15) not null primary key , Password varchar(10) not null , Role varchar(20) not null , Login_Status int not null default 0);
+
+create table Event ( Event_ID int not null primary key , Club_ID int not null , Event_Name varchar(50) not null , Date_And_Time datetime not null , Location varchar(50) not null , Description varchar(100) not null , foreign key (Club_ID) reference Clubs(Club_ID));
+
+DELIMITER //
+
+CREATE PROCEDURE AutoIncrementEventID()
+BEGIN
+    CREATE TEMPORARY TABLE temp_table AS 
+    SELECT event_id, ROW_NUMBER() OVER (ORDER BY event_id) + 3000 AS new_event_id 
+    FROM event;
+
+    UPDATE event e
+    JOIN temp_table t ON e.event_id = t.event_id 
+    SET e.event_id = t.new_event_id;
+
+    DROP TEMPORARY TABLE temp_table;
+END //
+
+DELIMITER ;
+
+CALL AutoIncrementEventID();
