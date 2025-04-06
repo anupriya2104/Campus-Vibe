@@ -1,0 +1,31 @@
+//event
+
+function navigateToEvent() {
+    var select = document.getElementById("eventList");
+    var url = select.value;
+    if (url) {
+        window.location.href = url;
+    }
+}
+
+function navigateToAll() {
+    var select = document.getElementById("allevents");
+    var url = select.value;
+    if (url) {
+        window.location.href = url;
+    }
+}
+
+//logout
+
+document.addEventListener('DOMContentLoaded',()=>{
+    const userlogout = document.getElementById('userlogout');
+    userlogout.addEventListener('click',()=>{
+        const logout = document.getElementById('logout');
+        if(logout.style.display === 'block'){
+            logout.style.display = 'none';
+        }else{
+            logout.style.display = 'block';
+        }
+    });
+});
