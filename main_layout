@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/Styles/Header.css">
+    <link rel="stylesheet" href="/Styles/Section.css">
+    <link rel="stylesheet" href="/Styles/event.css">
+    <link rel="stylesheet" href="/Styles/eachEvent.css">
+    <link rel="stylesheet" href="/Styles/allEvents.css">
+    <link rel="stylesheet" href="/Styles/eventlist.css">
+    <title><%= titleName %></title>
+</head>
+<body>
+
+    <header>
+        <div class="user-details">
+            <!--<i class="fa-solid fa-bell"></i>
+            <i class="fa-solid fa-comment"></i>-->
+            <span><%= userId %> <%= user %></span>
+            <span class="user-code">2A</span>
+            <i class="fa-solid fa-angle-down" id="userlogout"></i>
+            <div class="log-out-section">
+                <a href="http://localhost:5000/logout"><h3 id="logout">Log out</h3></a>
+            </div>
+        </div>
+        <div class="college-detail">
+            <span class="college-name">
+                <% if(heading){ %>
+                    <%= heading %>
+                <%}else{ %>
+                    IIITKottayam - UG23
+                <% } %>
+            </span>
+            <!--<i class="fa-solid fa-magnifying-glass search-icon"></i>-->
+        </div>
+        <div class="navigation-section">
+            <nav>
+                <div>
+                    <i class="fa-solid fa-house"></i>
+                    <a href="http://localhost:5000/dashboard" style="text-decoration: none; color: black;"><span>Home</span></a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-gauge"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div>
+                    <i class="fa fa-th fa-lg"></i>
+                    <a href="http://localhost:5000/academic" style="text-decoration: none; color: black;"><span>Courses</span></a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Events</span>
+                </div>
+            </nav>
+            <div class="customize-section">
+                <!--<button class="customize-button">Customize this page</button>
+                <i class="fa-solid fa-down-left-and-up-right-to-center"></i>
+                <span>Standard view</span>-->
+            </div>
+        </div>
+    </header>
+
+    <section>
+
+        <div class="home-event-section">
+            <div class="event-overview">
+                <div>
+                    <i class="fa-solid fa-bars" style="margin-right: 10px;"></i>
+                    <span>Event Overview</span>
+                </div>
+                <!--<i class="fa-solid fa-compress"></i>-->
+            </div>
+            <div class="button-section">
+                <select id="allevents" onchange="navigateToAll()">
+                    <option value="" disabled selected hidden>Select</option>
+                    <option value="http://localhost:5000/allevents">All</option>
+                    <!--<option value="http://localhost:5000/inprogress">In progress</option>-->
+                </select>
+                <!--<input type="search" placeholder="Search">-->
+                <select id="eventList" onchange="navigateToEvent()">
+                    <option value="" disabled selected hidden>Sort by event name</option>
+                    <option value="http://localhost:5000/event?Id=<%= encrypt(1001) %>">Wilbeats</option>
+                    <option value="http://localhost:5000/event?Id=<%= encrypt(1002) %>">Trendles</option>
+                    <option value="http://localhost:5000/event?Id=<%= encrypt(1003) %>">Mind Quest</option>
+                    <option value="http://localhost:5000/event?Id=<%= encrypt(1004) %>">Sports</option>
+                    <option value="http://localhost:5000/event?Id=<%= encrypt(1005) %>">Beta Labs</option>
+                    <option value="http://localhost:5000/event?Id=<%= encrypt(1006) %>">GDG</option>
+                    <option value="http://localhost:5000/event?Id=<%= encrypt(1007) %>">Cyber Security</option>
+                    <option value="http://localhost:5000/event?Id=<%= encrypt(1008) %>">Enigma</option>
+                    <option value="http://localhost:5000/event?Id=<%= encrypt(1010) %>">ELIX</option>
+                </select>
+                <select>
+                    <option value="" selected>Card</option>
+                    <option value="">List</option>
+                    <option value="">Summary</option>
+                </select>
+            </div>
+
+            <main><%- body %></main>
+
+        </div>
+
+        <div class="sidebar-navigation">
+            <h3>Navigation</h5>
+            <!--<div class="event-keys">
+                <h3><i class="fa-solid fa-list"></i>Event Key</h3>
+                <h4><i class="fa-regular fa-eye" style="background-color: rgb(63, 251, 63)"></i>Hide site events</h4>
+                <h4><i class="fa-regular fa-eye" style="background-color: violet;"></i>Hide course events</h4>
+                <h4><i class="fa-regular fa-eye" style="background-color: rgb(244, 187, 83);"></i>Hide group events</h4>
+                <h4><i class="fa-regular fa-eye" style="background-color: yellow;"></i>Hide user events</h4>
+                <h4><i class="fa-regular fa-eye" style="background-color: rgb(69, 244, 250);"></i>Hide other events</h4>
+            </div>
+            <div class="navigate">
+                <h3 style="display: flex; justify-content: space-between;">
+                    <div><i class="fa-solid fa-bars"></i>Navigation</div>
+                    <i class="fa-solid fa-compress"></i>
+                </h3>
+                <h4><i class="fa-solid fa-angle-down"></i>Dashboard</h4>
+                <h4><i class="fa-solid fa-house"></i>Home</h4>
+                <h4><i class="fa-solid fa-angle-down"></i>My courses</h4>
+            </div>-->
+        </div>
+    </section>
+
+    <script src="/Script/logout.js"></script>
+    <script src="/Script/event.js"></script>
+
+</body>
+</html>
