@@ -1,0 +1,70 @@
+<section class="allEvents">
+    <% if(result.length){%>
+        <% result.forEach(eachEvent => { %>
+            <div class="eachevent-section">
+                <div class="eventname">
+                    <h4 style="padding-left: 15px;">
+                        <i class="fa-solid fa-diamond" style="margin-right: 10px;"></i>
+                        <%= eachEvent.Event_Name %>
+                    </h4>
+                </div>
+                <div style="color: rgb(79, 79, 79);">
+                    <h5 style="padding-left: 15px;">
+                        <i class="fa-solid fa-calendar-days" style="margin-right: 20px;"></i><span style="margin-right: 10px;">:</span>
+                        <%= eachEvent.Date ? eachEvent.Date : 'Nil' %>
+                    </h5>
+                </div>
+                <div style="color: rgb(79, 79, 79);">
+                    <h5 style="padding-left: 15px;">
+                        <i class="fa-regular fa-clock" style="margin-right: 18px;"></i><span style="margin-right: 10px;">:</span>
+                        <%= eachEvent.Time ? eachEvent.Time : 'Nil' %>
+                    </h5>
+                </div>
+                <div style="color: rgb(244, 44, 164);">
+                    <h5 style="padding-left: 15px;">
+                        <i class="fa-solid fa-location-dot" style="margin-right:21px ;"></i><span style="margin-right: 10px;">:</span>
+                        <%= eachEvent.Location ? eachEvent.Location : 'Nil' %>
+                    </h5>
+                </div>
+                <% if (eachEvent.Description){ %>
+                    <div style="color: rgb(79, 79, 79);">
+                        <h5 style="padding-left: 15px;">
+                            <i class="fa-solid fa-scroll" style="margin-right: 16px ;"></i><span style="margin-right: 10px;">:</span>
+                            <%= eachEvent.Description %>
+                        </h5>
+                    </div>
+                <% } %>
+                <% if (eachEvent.Speaker){ %>
+                    <div style="color: rgb(79, 79, 79);">
+                        <h5 style="padding-left: 15px;">
+                            <i class="fa-solid fa-microphone" style="margin-right: 21px ;"></i><span style="margin-right: 10px;">:</span>
+                            <%= eachEvent.Speaker %>
+                        </h5>
+                    </div>
+                <% } %>
+                <% if (eachEvent.Topic){ %>
+                    <div style="color: rgb(79, 79, 79);">
+                        <h5 style="padding-left: 15px;">
+                            <i class="fa-solid fa-thumbtack" style="margin-right: 16px ;"></i><span style="margin-right: 10px;">:</span>
+                            <%= eachEvent.Topic %>
+                        </h5>
+                    </div>
+                <% } %>
+                <% if (eachEvent.Link) { %>
+                    <% let link = String(eachEvent.Link).replace(/'/g, '"'); %> 
+                    <% const registrations = JSON.parse(link); %>
+                    <% for (const key in registrations) { %>
+                        <div style="color: rgb(79, 79, 79);">
+                            <h5 style="padding-left: 15px;">
+                                <span style="margin-right: 10px;"><%= key %></span>: 
+                                <a href="<%= registrations[key] %>" target="_blank" style="border: none;" ><%= registrations[key] %></a>
+                            </h5>
+                        </div>
+                    <% } %>
+                <% } %>   
+            </div>
+        <% }); %>
+    <%}else{%>
+        <h3>No events</h3>
+    <%} %>
+</section>
