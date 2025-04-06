@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Styles/login.css">
+    <title><%= titleName %></title>
+</head>
+<body>
+    <h3 style="color: red; margin-bottom: 10px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><%= message %></h3>
+        <form action="http://localhost:5000/dashboard" method="post">
+            <div class="login-container">
+
+                <div class="attributes">
+                    <input type="text" name="userId" required placeholder="Username">
+                </div>
+
+                <div class="attributes">
+                    <input type="password" name="password" required placeholder="Password">
+                </div>
+
+                <div class="attributes">
+                    <button class="login-button" type="submit">Log in</button>
+                </div>
+
+                <!--<div class="attributes" style="border-bottom: 1px solid rgb(168, 166, 166); padding-bottom: 17px;">
+                    <p style="color: rgb(106, 105, 105);" class="check-in">Lost Password ?</p>
+                </div>
+
+                <div class="attributes">
+                    <p style="font-size: 25px;">Some courses may allow guest access</p>
+                </div>
+
+                <div class="attributes" style="border-bottom: 1px solid rgb(188, 186, 186); padding-bottom: 30px;">
+                    <button>Access as a guest</button>
+                </div>
+
+                <div class="attributes" style="display: flex; align-self: self-start;">
+                    <button style="padding: 10px;">Cookies notice</button>
+                </div>-->
+
+            </div>
+        </form>
+</body>
+</html>
