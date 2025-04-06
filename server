@@ -1,0 +1,60 @@
+const express = require('express');
+const ejsLayouts = require('express-ejs-layouts');
+const path = require('path');
+const mysql = require('mysql2/promise');
+const dayjs = require('dayjs');
+const app = express();
+const port = 5000;
+
+const pool = mysql.createPool({
+    connectionLimit : 2 ,
+    host : "localhost" ,
+    user : "root" ,
+    password : "" ,
+    database : "campus_vibes"
+});
+
+
+app.use(express.static(path.join(__dirname, '/Public')));
+app.set('view engine', 'ejs');
+app.use(ejsLayouts);
+app.set("layout","layout/main-layout");
+app.use('/',require('./Router/event.js'));
+app.use('/',require('./Router/login.js'));
+app.use('/',require('./Router/basic.js'));
+
+
+
+
+function deletetuple(){
+    setInterval( () => checkingDate , 60000 );
+}
+
+
+async function checkingDate(){
+    const query = `select * from event`;
+    const now = dayjs();
+    try {
+        const [ eventDetails ] = await pool.query(query);
+        eventDetails.forEach( async (event)=>{
+            const dateTime = dayjs(event.Date_And_Time);
+            if(dateTime.isBefore(now)){
+                const deleteQuery = `delete from event where Event_ID = ?`;
+                await pool.query(deleteQuery , [ event.Event_ID ]);
+            }
+        });
+        const updateEventId = `CALL AutoIncrementEventID();`;
+        await pool.query(updateEventId);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+app.get('/*',(request,response)=>{
+    response.status(404).render('pageNotFound' , { layout : false });
+});
+
+
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
