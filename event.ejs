@@ -1,0 +1,106 @@
+<section class="event">
+
+    <% if(result.length){%>
+        <% result.forEach(eachEvent => { %>
+            <div class="eachEvent">
+                <div class="event-section">
+                    <div class="eventname">
+                        <h4 style="padding-left: 15px;">
+                            <i class="fa-solid fa-diamond" style="margin-right: 10px;"></i>
+                            <%= eachEvent.Event_Name %>
+                        </h4>
+                    </div>
+                    <div style="color: rgb(79, 79, 79);">
+                        <h5 style="padding-left: 15px;">
+                            <i class="fa-solid fa-calendar-days" style="margin-right: 20px;"></i><span style="margin-right: 10px;">:</span>
+                            <%= eachEvent.Date ? eachEvent.Date : 'Nil' %>
+                        </h5>
+                    </div>
+                    <div style="color: rgb(79, 79, 79);">
+                        <h5 style="padding-left: 15px;">
+                            <i class="fa-regular fa-clock" style="margin-right: 18px;"></i><span style="margin-right: 10px;">:</span>
+                            <%= eachEvent.Time ? eachEvent.Time : 'Nil' %>
+                        </h5>
+                    </div>
+                    <div style="color: rgb(244, 44, 164);">
+                        <h5 style="padding-left: 15px;">
+                            <i class="fa-solid fa-location-dot" style="margin-right:21px ;"></i><span style="margin-right: 10px;">:</span>
+                            <%= eachEvent.Location ? eachEvent.Location : 'Nil' %>
+                        </h5>
+                    </div>
+                    <% if (eachEvent.Description){ %>
+                        <div style="color: rgb(79, 79, 79);">
+                            <h5 style="padding-left: 15px;">
+                                <i class="fa-solid fa-scroll" style="margin-right: 16px ;"></i><span style="margin-right: 10px;">:</span>
+                                <%= eachEvent.Description %>
+                            </h5>
+                        </div>
+                    <% } %>
+                    <% if (eachEvent.Speaker){ %>
+                        <div style="color: rgb(79, 79, 79);">
+                            <h5 style="padding-left: 15px;">
+                                <i class="fa-solid fa-microphone" style="margin-right: 21px ;"></i><span style="margin-right: 10px;">:</span>
+                                <%= eachEvent.Speaker %>
+                            </h5>
+                        </div>
+                    <% } %>
+                    <% if (eachEvent.Topic){ %>
+                        <div style="color: rgb(79, 79, 79);">
+                            <h5 style="padding-left: 15px;">
+                                <i class="fa-solid fa-thumbtack" style="margin-right: 16px ;"></i><span style="margin-right: 10px;">:</span>
+                                <%= eachEvent.Topic %>
+                            </h5>
+                        </div>
+                    <% } %>
+                    <% if (eachEvent.Link) { %>
+                        <% let link = String(eachEvent.Link).replace(/'/g, '"'); %> 
+                        <% const registrations = JSON.parse(link); %>
+                        <% for (const key in registrations) { %>
+                            <div>
+                                <h5 style="padding-left: 15px;">
+                                    <span style="margin-right: 10px;" style="color: rgb(79, 79, 79);"><%= key %></span>: 
+                                    <a href="<%= registrations[key] %>" target="_blank" style="border-top: 0; border-left: 0; border-right: 0; border-color: blue; color: blue;" ><%= registrations[key] %></a>
+                                </h5>
+                            </div>
+                        <% } %>
+                    <% } %>                    
+                </div>
+    
+                <div style="align-self: end; margin-right: 15px; padding-bottom: 10px;">
+                    <% if ( clubLead ) { %>
+                        <a href="http://localhost:5000/edit?eventId=<%= encrypt(eachEvent.Event_ID) %>&clubId=<%= clubId %>"><button class="edit-button">EDIT</button></a>
+                    <% } %>
+                </div>
+    
+                <% if ( eachEvent.Event_ID == eventId ) { %>
+                    <form action="http://localhost:5000/edit" method="post">
+                        <div class="event-change">
+                            <div style="margin: 0;">
+                                <input type="number" value="<%= encrypt(eventId) %>" name="eventId" hidden>
+                            </div>
+                            <div style="margin: 0;">
+                                <input type="number" value="<%= clubId %>" name="clubId" hidden>
+                            </div>
+                            <div>
+                                <input type="text" placeholder="date" name="date" value="<%= specificEvent[0].Date %>">
+                            </div>
+                            <div>
+                                <input type="text" placeholder="time" name="time" value="<%= specificEvent[0].Time %>">
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Venue.." name="location" value="<%= specificEvent[0].Location %>">
+                            </div>
+                            <div style="margin: 0;">
+                                <button class="edit-change-button">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                <% } %>
+    
+            </div>
+        <% }); %>
+    <%} else {%>
+        <h3>No upcoming Events</h3>
+    <% } %>
+
+</section>
