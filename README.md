@@ -6,7 +6,7 @@ Campus Vibe is a centralized platform designed to streamline and organize all es
 
 ## 🚀 Features
 
-- 📢 Aggregates updates from various student groups
+- 📢 Aggregates updates from various emails
 - 🧠 Smart categorization and filtering of information
 - 🔍 Quick search to find relevant messages
 - 📅 Reminders for upcoming events and deadlines
@@ -20,8 +20,6 @@ Campus Vibe is a centralized platform designed to streamline and organize all es
 - **Backend:** Node.js + Express.js  
 - **Database:** MySQL 
 - **ML Models:**  
-  - BiLSTM + CRF for message tagging  
-  - BERT for context understanding  
   - FLAN-T5 for summarization  
   - Regex patterns for quick rule-based classification
 
