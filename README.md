@@ -1,6 +1,6 @@
 # 🌟 Campus Vibe
 
-Campus Vibe is a centralized platform designed to streamline and organize all essential campus updates in one place. It ensures students stay informed about academic announcements, club activities, deadlines, and more—without the noise of multiple WhatsApp groups.
+Campus Vibe is a centralized platform designed to streamline and organize all essential campus updates in one place. It ensures students stay informed about academic announcements, club activities, deadlines, and more—without the noise of multiple emails.
 
 ---
 
